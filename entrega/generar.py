@@ -1,9 +1,18 @@
 #!/usr/bin/env python3
-"""Toma negocios-10.csv + plantilla.html y escribe una página por negocio."""
+"""Toma negocios-10.csv + plantilla.html y escribe una página por negocio.
+
+Uso:
+    python generar.py            -> arma las páginas reales en para-<slug>/
+                                     (si el CSV trae más filas que el TOPE, para y avisa)
+    python generar.py --prueba   -> modo de prueba: arma SOLO la primera fila en
+                                     prueba-<slug>/, para revisar el diseño antes
+                                     de generar (y publicar) las diez reales.
+"""
 import csv
 import html
 import re
 import shutil
+import sys
 import urllib.parse
 from pathlib import Path
 
@@ -16,6 +25,8 @@ AUTOR_CONTACTO = "WhatsApp 477 185 0807"
 LADA_PAIS = "52"                                     # México
 
 MENSAJE_AL_NEGOCIO = "Hola, vi su página y quiero información."
+
+TOPE = 10   # no son diez cualquiera: si el CSV trae más, algo se coló sin querer
 
 
 def solo_digitos(t: str) -> str:
@@ -40,11 +51,64 @@ def boton(fila: dict) -> str:
     return '<a class="boton" href="tel:%s">%s Llámanos: %s</a>' % (tel, ICONO_TEL, html.escape(fila["telefono"]))
 
 
+def armar_pagina(plantilla: str, fila: dict) -> str:
+    mapa = "https://www.google.com/maps/search/?api=1&query=" + urllib.parse.quote(
+        "%s, %s, %s" % (fila["nombre"], fila["direccion"], fila["ciudad"]))
+
+    pagina = plantilla
+    reemplazos = {
+        "{{NOMBRE}}": html.escape(fila["nombre"]),
+        "{{GIRO}}": html.escape(fila["giro"]),
+        "{{CIUDAD}}": html.escape(fila["ciudad"]),
+        "{{DIRECCION}}": html.escape(fila["direccion"]),
+        "{{TELEFONO}}": html.escape(fila["telefono"]),
+        "{{TEL_LIMPIO}}": solo_digitos(fila["telefono"]),
+        "{{SERVICIO1}}": html.escape(fila["servicio1"]),
+        "{{SERVICIO2}}": html.escape(fila["servicio2"]),
+        "{{SERVICIO3}}": html.escape(fila["servicio3"]),
+        "{{MAPA}}": mapa,
+        "{{BOTON}}": boton(fila),
+        "{{AUTOR}}": html.escape(AUTOR),
+        "{{AUTOR_CONTACTO}}": html.escape(AUTOR_CONTACTO),
+    }
+    for hueco, valor in reemplazos.items():
+        pagina = pagina.replace(hueco, valor)
+    return pagina
+
+
 def main() -> None:
+    prueba = "--prueba" in sys.argv
+
     plantilla = PLANTILLA.read_text(encoding="utf-8")
     filas = list(csv.DictReader(CSV.open(encoding="utf-8")))
-    escritas = []
 
+    if prueba:
+        if not filas:
+            print("El CSV está vacío, no hay nada que probar.")
+            return
+        fila = filas[0]
+        slug = fila["slug"].strip()
+        carpeta = BASE / ("prueba-%s" % slug)
+        carpeta.mkdir(parents=True, exist_ok=True)
+        destino = carpeta / "index.html"
+        destino.write_text(armar_pagina(plantilla, fila), encoding="utf-8")
+        print("── MODO DE PRUEBA ──")
+        print("Renglones en el CSV: %d" % len(filas))
+        print("Página de prueba:    prueba-%s/index.html" % slug)
+        print("\nÁbrela en http://localhost:8080/prueba-%s/ (con el servidor local prendido)" % slug)
+        print("y revisa el diseño ANTES de correr 'python generar.py' (sin --prueba) para las diez.")
+        print("Esta carpeta 'prueba-*' nunca se publica ni se cuenta como entrega.")
+        return
+
+    if len(filas) > TOPE:
+        print("── TOPE ──")
+        print("Renglones en el CSV: %d" % len(filas))
+        print("Tope por corrida:    %d" % TOPE)
+        print("\nSon más de %d. No escribí ninguna página." % TOPE)
+        print("No son diez cualquiera: revisa el CSV, quita los que sobran, y vuelve a correr.")
+        return
+
+    escritas = []
     for fila in filas:
         slug = fila["slug"].strip()
         carpeta = BASE / ("para-%s" % slug)
@@ -54,29 +118,7 @@ def main() -> None:
         if destino.exists():
             shutil.copy(destino, destino.with_suffix(".html.respaldo"))
 
-        mapa = "https://www.google.com/maps/search/?api=1&query=" + urllib.parse.quote(
-            "%s, %s, %s" % (fila["nombre"], fila["direccion"], fila["ciudad"]))
-
-        pagina = plantilla
-        reemplazos = {
-            "{{NOMBRE}}": html.escape(fila["nombre"]),
-            "{{GIRO}}": html.escape(fila["giro"]),
-            "{{CIUDAD}}": html.escape(fila["ciudad"]),
-            "{{DIRECCION}}": html.escape(fila["direccion"]),
-            "{{TELEFONO}}": html.escape(fila["telefono"]),
-            "{{TEL_LIMPIO}}": solo_digitos(fila["telefono"]),
-            "{{SERVICIO1}}": html.escape(fila["servicio1"]),
-            "{{SERVICIO2}}": html.escape(fila["servicio2"]),
-            "{{SERVICIO3}}": html.escape(fila["servicio3"]),
-            "{{MAPA}}": mapa,
-            "{{BOTON}}": boton(fila),
-            "{{AUTOR}}": html.escape(AUTOR),
-            "{{AUTOR_CONTACTO}}": html.escape(AUTOR_CONTACTO),
-        }
-        for hueco, valor in reemplazos.items():
-            pagina = pagina.replace(hueco, valor)
-
-        destino.write_text(pagina, encoding="utf-8")
+        destino.write_text(armar_pagina(plantilla, fila), encoding="utf-8")
         escritas.append(slug)
 
     print("Renglones en el CSV: %d" % len(filas))

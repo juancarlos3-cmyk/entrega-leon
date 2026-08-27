@@ -11,3 +11,5 @@ bitacora.csv
 bajas.csv
 .DS_Store
 *.respaldo
+prueba-*/
+mina.prueba.sql
