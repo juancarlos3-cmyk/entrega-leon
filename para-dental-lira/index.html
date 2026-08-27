@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Centro Dental Familiar Integral Lira — muestra</title>
+<meta property="og:title" content="Centro Dental Familiar Integral Lira — muestra">
+<meta property="og:description" content="Página de muestra hecha para Centro Dental Familiar Integral Lira, León.">
+<style>
+  :root{
+    --tinta:#0b1f1c;
+    --papel:#f4faf8;
+    --acento:#0d9488;
+    --acento2:#0891b2;
+    --calido:#f59e0b;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    background:var(--papel); color:var(--tinta);
+    line-height:1.6; -webkit-font-smoothing:antialiased;
+  }
+  .caja{max-width:780px;margin:0 auto;padding:0 24px}
+  svg{display:block}
+
+  .hero{
+    background:
+      radial-gradient(1100px 480px at 15% -10%, rgba(255,255,255,.18), transparent 60%),
+      linear-gradient(135deg, var(--acento) 0%, var(--acento2) 100%);
+    color:#fff;
+    padding:64px 0 80px;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::after{
+    content:"";
+    position:absolute; inset:auto -10% -60% -10%;
+    height:220px;
+    background:var(--papel);
+    border-radius:50% 50% 0 0 / 100% 100% 0 0;
+  }
+  .hero-icono{
+    width:56px;height:56px;margin:0 auto 18px;
+    background:rgba(255,255,255,.16);
+    border:1px solid rgba(255,255,255,.35);
+    border-radius:16px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .hero .giro{
+    display:inline-block;
+    text-transform:uppercase;letter-spacing:.16em;font-size:12.5px;
+    background:rgba(255,255,255,.18);
+    border:1px solid rgba(255,255,255,.35);
+    padding:7px 16px;border-radius:999px;
+    font-weight:700;margin-bottom:22px;
+    backdrop-filter:blur(2px);
+  }
+  .hero h1{
+    font-size:clamp(32px,7vw,52px);line-height:1.08;letter-spacing:-.02em;
+    font-weight:800;
+    text-shadow:0 2px 24px rgba(0,0,0,.12);
+  }
+  .hero .donde{
+    margin-top:16px;font-size:17px;opacity:.92;font-weight:500;
+    display:flex;align-items:center;justify-content:center;gap:7px;
+  }
+  .boton{
+    display:inline-flex;align-items:center;gap:10px;
+    margin-top:34px;padding:18px 38px;border-radius:999px;
+    background:var(--calido);color:#1a1305;text-decoration:none;
+    font-weight:800;font-size:17.5px;
+    box-shadow:0 10px 30px -6px rgba(245,158,11,.55);
+    border:2px solid rgba(255,255,255,.5);
+  }
+
+  .servicios{
+    display:grid;gap:16px;margin-top:-46px;position:relative;z-index:2;
+    padding-bottom:8px;
+  }
+  @media(min-width:640px){.servicios{grid-template-columns:repeat(3,1fr)}}
+  .servicio{
+    background:#fff;border-radius:18px;
+    padding:28px 20px;text-align:center;
+    box-shadow:0 14px 34px -18px rgba(13,148,136,.35);
+    border:1px solid rgba(13,148,136,.10);
+  }
+  .servicio .icono{
+    width:44px;height:44px;margin:0 auto 12px;
+    background:linear-gradient(135deg, var(--acento), var(--acento2));
+    border-radius:12px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .servicio .txt{font-weight:700;font-size:16.5px;color:var(--tinta)}
+
+  .datos{
+    background:#fff;border-radius:18px;
+    padding:34px 30px;margin:44px 0 52px;
+    border:1px solid rgba(13,148,136,.10);
+    box-shadow:0 14px 34px -22px rgba(13,148,136,.3);
+  }
+  .datos h2{
+    font-size:13px;text-transform:uppercase;letter-spacing:.16em;
+    color:var(--acento);margin-bottom:20px;font-weight:800;
+  }
+  .datos .fila{display:flex;gap:14px;margin-bottom:16px;align-items:flex-start}
+  .datos .fila:last-child{margin-bottom:0}
+  .datos .icono{
+    width:34px;height:34px;flex:none;
+    background:rgba(13,148,136,.10);border-radius:10px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .datos .txt{padding-top:5px}
+  .datos a{color:var(--acento2);font-weight:700;text-decoration:none}
+  .datos a:hover{text-decoration:underline}
+
+  .cortesia{
+    border-top:2px dashed rgba(13,148,136,.25);padding:28px 0 50px;
+    font-size:13.5px;line-height:1.7;color:#3d5a55;
+  }
+  .cortesia strong{color:var(--tinta)}
+</style>
+</head>
+<body>
+
+  <div class="hero">
+    <div class="caja">
+      <div class="hero-icono">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 21c-1.2 0-1.6-3.6-2.3-6.3C9.2 12.5 8 12 7 12c-1.7 0-3-1.4-3-4.2C4 4.6 6 2 9 2c1.4 0 2.1.8 3 .8s1.6-.8 3-.8c3 0 5 2.6 5 5.8 0 2.8-1.3 4.2-3 4.2-1 0-2.2.5-2.7 2.7-.7 2.7-1.1 6.3-2.3 6.3Z"/>
+        </svg>
+      </div>
+      <p class="giro">Consultorio dental</p>
+      <h1>Centro Dental Familiar Integral Lira</h1>
+      <p class="donde">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s7-7.2 7-12.5A7 7 0 0 0 5 9.5C5 14.8 12 22 12 22Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+        León
+      </p>
+      <a class="boton" href="tel:4771366412"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1a1305" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.4 2.1L8 9.9a16 16 0 0 0 6 6l1.4-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.8 2Z"/></svg> Llámanos: 4771366412</a>
+    </div>
+  </div>
+
+  <div class="caja">
+    <div class="servicios">
+      <div class="servicio">
+        <div class="icono"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c-1.2 0-1.6-3.6-2.3-6.3C9.2 12.5 8 12 7 12c-1.7 0-3-1.4-3-4.2C4 4.6 6 2 9 2c1.4 0 2.1.8 3 .8s1.6-.8 3-.8c3 0 5 2.6 5 5.8 0 2.8-1.3 4.2-3 4.2-1 0-2.2.5-2.7 2.7-.7 2.7-1.1 6.3-2.3 6.3Z"/></svg></div>
+        <span class="txt">Limpieza dental</span>
+      </div>
+      <div class="servicio">
+        <div class="icono"><svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M12 2l1.8 5.6L19 9l-5.2 1.4L12 16l-1.8-5.6L5 9l5.2-1.4L12 2Z"/><path d="M19 15l.9 2.7L22 18l-2.1.8L19 21l-.9-2.2L16 18l2.1-.3L19 15Z"/></svg></div>
+        <span class="txt">Extracciones</span>
+      </div>
+      <div class="servicio">
+        <div class="icono"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 13.5s1.5 2 4 2 4-2 4-2"/><path d="M9 9h.01M15 9h.01"/></svg></div>
+        <span class="txt">Ortodoncia</span>
+      </div>
+    </div>
+
+    <div class="datos">
+      <h2>Dónde y cómo</h2>
+      <div class="fila">
+        <div class="icono"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#0d9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s7-7.2 7-12.5A7 7 0 0 0 5 9.5C5 14.8 12 22 12 22Z"/><circle cx="12" cy="9.5" r="2.5"/></svg></div>
+        <div class="txt"><strong>Dirección:</strong> Boulevard Vasco de Quiroga 224, Colonia Las Fuentes</div>
+      </div>
+      <div class="fila">
+        <div class="icono"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#0d9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.4 2.1L8 9.9a16 16 0 0 0 6 6l1.4-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.8 2Z"/></svg></div>
+        <div class="txt"><strong>Teléfono:</strong> <a href="tel:4771366412">4771366412</a></div>
+      </div>
+      <div class="fila">
+        <div class="icono"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#0d9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2Z"/><path d="M9 4v14M15 6v14"/></svg></div>
+        <div class="txt"><a href="https://www.google.com/maps/search/?api=1&query=Centro%20Dental%20Familiar%20Integral%20Lira%2C%20Boulevard%20Vasco%20de%20Quiroga%20224%2C%20Colonia%20Las%20Fuentes%2C%20Le%C3%B3n" target="_blank" rel="noopener">Ver cómo llegar en el mapa →</a></div>
+      </div>
+    </div>
+
+    <footer class="cortesia">
+      <p><strong>Ésta es una muestra de cortesía.</strong> La hice yo, Juan Carlos, como ejemplo
+      de cómo se vería Centro Dental Familiar Integral Lira en internet. <strong>No es el sitio oficial de Centro Dental Familiar Integral Lira</strong>
+      y no fue hecha ni autorizada por ellos. Si al negocio le gusta, se la paso sin costo;
+      si no la quiere, la doy de baja. Contacto: WhatsApp 477 185 0807</p>
+    </footer>
+  </div>
+
+</body>
+</html>
